@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<style>
+    button[type=submit] {
+        background-color:cornflowerblue;
+        border-radius: 32px;
+        color: white;
+        padding: 16px 32px;
+        text-decoration: auto;
+        margin: 4px 2px;
+        cursor: pointer;
+    }
+    .container {
+        text-align: center;
+    }
+
+    .button {
+        background-color: cornflowerblue;
+        color: white;
+        padding: 16px 32px;
+        margin: 4px;
+        margin-right: 40px;
+        border-radius: 32px;
+        text-align: center;
+        border: none;
+        padding: 16px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        transition-duration: 0.4s;
+        cursor: pointer;
+    }
+
+
+    .button1:hover {
+        background-color: lightblue;
+        color: white;
+        border-radius: 32px;
+    }
+
+</style>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HomePage</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body style="background-color: lightgreen;">
+    <div>
+        <button class="button button1" onclick="document.location='/login'">Log In</button>
+    </div>
+    <div class="container">
+        <div>
+            <h1>Welcome to the our advertisement project homepage</h1>
+            <p>Feel free to browse our site and check our new advertisements !</p>
+            <br />
+            <br />
+            <a class="button button1" href="/screen-1">screen-1</a>
+            <a class="button button1" href="/screen-2">screen-2</a>
+            <a class="button button1" href="/screen-3">screen-3</a>
+        </div>
+    </div>
+</body>
+</html>

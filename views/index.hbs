@@ -1,0 +1,276 @@
+<form action="/logout?_method=DELETE" method="POST">
+    <button class="button button1" type="submit">Log Out</button>
+</form>
+<style>
+    body {
+        padding: 50px;
+        font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    }
+
+    section {
+        text-align:center;
+        float: left;
+        background: #bdc3c7;
+        padding: 10px;
+        margin: 5px;
+        width: 250px;
+        box-shadow: 3px 3px 1px #34495e;
+        min-height: 400px;
+    }
+
+    .item {
+        margin: 10px 0;
+        padding: 5px;
+        background: #95a5a6;
+        border: 1px solid black;
+    }
+
+    h3 {
+        text-align: center;
+    }
+    .button {
+        border: none;
+        color: white;
+        padding: 8px 16px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        transition-duration: 0.4s;
+        cursor: pointer;
+    }
+
+    .button1 {
+        background-color: white;
+        color: black;
+        border: 2px solid #bdc3c7;
+        border-radius: 16px;
+    }
+
+        .button1:hover {
+            background-color: black;
+            color: white;
+            border-radius: 32px;
+        }
+
+</style>
+<a class="button button1" href="/">HomePage</a>
+<h1 style=" text-align: center ">Hi admin !</h1>
+<hr />
+<h2 style=" text-align: center "> Your control panel </h2>
+
+<body style="background-color: gray">
+    <section class="insert" style="background-color: lightskyblue">
+        <h3>Insert advertisement</h3>
+        <form action="/insert" method="post">
+            <br />
+            <div class="input">
+                <label for="title">Title:</label>
+                <br />
+                <input type="text" id="title" name="title">
+            </div>
+            <br />
+            <br />
+            <div class="input">
+                <label for="address">Image address:</label>
+                <br />
+                <input type="text" id="address" name="address">
+            </div>
+            <br />
+            <br />
+            <div class="input">
+                <label for="Id">Id:</label>
+                <br />
+                <input type="text" id="Id" name="Id">
+            </div>
+            <br />
+            <label for="Commercials">for screen:</label>
+            <select name="Commercials" id="Commercials">
+                <option value="screen-1">1</option>
+                <option value="screen-2">2</option>
+                <option value="screen-3">3</option>
+            </select>
+            <br />
+            <br />
+            <br />
+            <button type="submit">Insert new advertisement</button>
+        </form>
+    </section>
+
+    <section class="get" style="background-color: lightsteelblue">
+        <h3>Get advertisements</h3>
+        <br />
+        <div>
+            {{# each items }}
+            <article class="item">
+                <div>Title: {{ this.title }}</div>
+                <div>Address: {{ this.address }}</div>
+                <div>Id: {{ this._id }}</div>
+            </article>
+            {{/each}}
+        </div>
+        <br />
+
+        <form action="/get-data">
+            <select name="Commercials" id="Commercials">
+                <option value="screen-1">1</option>
+                <option value="screen-2">2</option>
+                <option value="screen-3">3</option>
+            </select>
+            <button type="submit">Load screen advertisements</button>
+        </form>
+    </section>
+
+
+    <section class="update" style="background-color: orangered">
+        <h3>Update advertisement</h3>
+        <br />
+        <form action="/update" method="post">
+            <div class="input">
+                <label for="id">Id:</label>
+                <br />
+                <input type="text" id="id" name="id">
+            </div>
+            <br />
+            <br />
+            <div class="input">
+                <label for="title">Title</label>
+                <br />
+                <input type="text" id="title" name="title">
+            </div>
+            <br />
+            <br />
+            <div class="input">
+                <label for="address">Address:</label>
+                <br />
+                <input type="text" id="address" name="address">
+            </div>
+            <br />
+            <label for="Commercials">for screen:</label>
+            <select name="Commercials" id="Commercials">
+                <option value="screen-1">1</option>
+                <option value="screen-2">2</option>
+                <option value="screen-3">3</option>
+            </select>
+            <br />
+            <br />
+            <button type="submit">Update</button>
+        </form>
+    </section>
+
+
+    <section class="Interval" style="background-color: pink">
+        <h3>Update Interval</h3>
+        <br />
+        <div>
+            {{# each Intervals }}
+            <article class="item">
+                <div>Screen: {{ this._id }}</div>
+                <div>Interval: {{ this.interval }}</div>
+            </article>
+            {{/each}}
+        </div>
+        <br />
+
+        <form action="/get-intervals">
+            <button type="submit">Load screen Intervals</button>
+        </form>
+
+        <br />
+
+
+        <form action="/Interval" method="post">
+            <div class="input">
+                <label for="Interval">Enter Interval value:</label>
+                <input type="number" min="1000" id="Interval" name="Interval" required title="Minimum value is: 1000">
+            </div>
+            <br />
+            <label for="Commercials">for screen:</label>
+            <select name="Commercials" id="Commercials">
+                <option value="screen-1">1</option>
+                <option value="screen-2">2</option>
+                <option value="screen-3">3</option>
+            </select>
+            <br />
+            <br />
+            <button type="submit">Update new Interval</button>
+        </form>
+    </section>
+
+
+
+
+    <section class="delete" style="background-color: gold">
+        <h3>Delete advertisement</h3>
+        <br />
+        <form action="/delete" method="post">
+            <div class="input">
+                <label for="id">Enter advertisement id:</label>
+                <input type="text" id="id" name="id">
+            </div>
+            <br />
+            <label for="Commercials">for screen:</label>
+            <select name="Commercials" id="Commercials">
+                <option value="screen-1">1</option>
+                <option value="screen-2">2</option>
+                <option value="screen-3">3</option>
+            </select>
+            <br />
+            <br />
+            <button type="submit">Delete</button>
+        </form>
+    </section>
+
+
+
+    <section class="changeUser" style="background-color: purple">
+        <h3>Change Username or Password</h3>
+        <br />
+        <form action="/changeAdmin" method="post">
+            <div class="input">
+                <label for="Newusername"> New username:</label>
+                <br />
+                <input type="text" pattern=".{3,}" id="Newusername" name="Newusername" required title="3 characters minimum">
+            </div>
+            <br />
+            <br />
+            <div class="input">
+                <label for="Newpassword">New password:</label>
+                <br />
+                <input type="password" pattern=".{5,10}" id="Newpassword" name="Newpassword" required title="5 to 10 characters">
+
+            </div>
+            <br />
+            <br />
+            <button type="submit">Update</button>
+
+        </form>
+    </section>
+
+
+    <section class="get" style="background-color: green">
+        <h3>Users History</h3>
+        <br />
+        <div>
+            {{# each History }}
+            <article class="item">
+                <div>User: {{ this.user }}</div>
+                <div>Action: {{ this.action }}</div>
+                <div>Time: {{ this.time }}</div>
+            </article>
+            {{/each}}
+        </div>
+        <br />
+
+        <form action="/get-usersConnected">
+            <button type="submit">Load User History</button>
+        </form>
+    </section>
+
+
+
+</body>
+
+
+

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head style="background-color: lightgreen">
+    <style>
+        h1 {text-align: center;}
+        p {text-align: center;}
+        div {text-align: center;}
+        .button {
+      border: none;
+      color: white;
+      padding: 16px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      transition-duration: 0.4s;
+      cursor: pointer;
+    }
+    .button1 {
+      background-color: lightskyblue; 
+      color: black; 
+      border: 2px solid lightskyblue;
+      border-radius: 32px;
+    }
+    .button1:hover {
+      background-color: rgb(49, 122, 190);
+      color: white;
+      border-radius: 32px;
+    }
+    </style>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Advertisement</title>
+</head>
+<body style="background-color: lightskyblue">
+    <button class="button button1" onclick="document.location='/login'">Log In</button>
+    <br />
+    <br />
+    <div>
+        <h2 id="Title" style="text-align: center;">loading Ads..</h2>
+    </div>
+    <div id="commercials">
+        <img id="image" width="550" height="550" src="./noAD.jpg" />
+    </div>
+    <br />
+   
+</body>
+</html>
+
+<script src="/socket.io/socket.io.js"></script>
+<script type="text/javascript">
+    var socket = io();
+    socket.on("connect", function () {
+        var url = window.location.pathname;
+        var id = url.substring(url.lastIndexOf('/') + 1);
+        socket.emit("setup", id);
+    });
+    socket.on('getData', function (MongoData) {
+        let i = 0;
+        var size = Object.keys(MongoData[0].screen).length;
+        setInterval(() => {
+            document.getElementById('image').src = MongoData[0].screen[i].address;
+            document.getElementById('Title').innerHTML = MongoData[0].screen[i].title;
+            i++;
+            if (i === size) i = 0;
+        }, MongoData[0].interval);
+    });
+</script>
+
+
